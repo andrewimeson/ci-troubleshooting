@@ -42,4 +42,5 @@ jobs:
       - name: Verify YAML syntax
         run: |
           . .venv/bin/activate
-          git ls-files -z '*.yaml' '*.yml' | xargs -0 yamllint
+          shopt -s extglob
+          yamllint --format github ./*+(.yaml|.yml) ./**/*+(.yaml|.yml)
