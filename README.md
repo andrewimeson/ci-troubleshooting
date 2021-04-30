@@ -1,4 +1,3 @@
-# CI Troubleshooting
+# CI Troubleshooting - yamllint
 
-A semi-permanent repo for illustrating issues with tools using GitHub Actions.
-Branches are likely unrelated to the master branch.
+Branch for testing yamllint.

@@ -1,0 +1,45 @@
+---
+name: Lint YAML
+
+# yamllint disable-line rule:truthy
+on: push
+
+jobs:
+  test_syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Cache Python packages
+        uses: actions/cache@v2
+        id: venv-cache
+        with:
+          # TODO: Rename
+          path: ./.venv/
+          key: venv-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            venv-${{ hashFiles('**/requirements*.txt') }}
+            venv-
+
+      # Build a virtualenv, but only if it doesn't already exist
+      - name: Setup Python venv
+        run: |
+          if [[ -f ./.venv/bin/python ]]; then
+            echo "venv found"
+            exit 0
+          elif [[ -d ./.venv ]]; then
+            rm -rf ./.venv
+          fi
+          python -m venv ./.venv
+          . .venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Verify YAML syntax
+        run: |
+          . .venv/bin/activate
+          yamllint $(git ls-files '*.yaml' '*.yml')
