@@ -4,4 +4,4 @@ yaml_is:
   - pretty
   - nice
 emoji: 🥓
-truthyness: yes
+truthyness: true
