@@ -1,0 +1,16 @@
+---
+# vim: set ft=yaml:
+extends: default
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  # None of these work for matching non ".yml" ".yaml" files in group_vars/
+  - group_vars
+  - group_vars/
+  - /group_vars/
+  - ./group_vars/
+  - ./group_vars
+  - group_vars/*
+  - group_vars/**
+  - ./group_vars/*
+  - ./group_vars/**
