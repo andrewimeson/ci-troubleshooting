@@ -42,4 +42,4 @@ jobs:
       - name: Verify YAML syntax
         run: |
           . .venv/bin/activate
-          git ls-files -z '*.yaml' '*.yml' | xargs -0 yamllint
+          yamllint .

@@ -1,0 +1,4 @@
+# yamllint will lint this file, because of the extension match
+# it won't lint it without that, even though it's in a directory that should
+# match.
+has_problems: TRUE

@@ -1,9 +1,14 @@
 ---
 # vim: set ft=yaml:
 extends: default
+ignore: |
+  .venv/
+  .git/
 yaml-files:
   - '*.yaml'
   - '*.yml'
+  # This works
+  - '*.yamaml'
   # None of these work for matching non ".yml" ".yaml" files in group_vars/
   - group_vars
   - group_vars/
